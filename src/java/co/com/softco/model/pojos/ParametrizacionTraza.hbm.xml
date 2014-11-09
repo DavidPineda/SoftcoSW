@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9/11/2014 05:39:06 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="co.com.softco.model.pojos.ParametrizacionTraza" table="parametrizacion_traza" schema="public">
+        <comment>Se guardan los datos de paramatrizaciones de trazas segun el modelo de tracker campo a campo</comment>
+        <composite-id name="id" class="co.com.softco.model.pojos.ParametrizacionTrazaId">
+            <key-property name="modCodTarcker" type="string">
+                <column name="mod_cod_tarcker" length="6" />
+            </key-property>
+            <key-property name="numeroCampo" type="int">
+                <column name="numero_campo" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="modeloTracker" class="co.com.softco.model.pojos.ModeloTracker" update="false" insert="false" fetch="select">
+            <column name="mod_cod_tarcker" length="6" not-null="true">
+                <comment>C&#195;&#179;digo del tracker</comment>
+            </column>
+        </many-to-one>
+        <property name="descrCampo" type="string">
+            <column name="descr_campo" length="100" not-null="true">
+                <comment>Descripcion del campo parametrizado</comment>
+            </column>
+        </property>
+        <property name="posIni" type="int">
+            <column name="pos_ini" not-null="true">
+                <comment>Posicion Inicial del campo en la traza</comment>
+            </column>
+        </property>
+        <property name="posFin" type="int">
+            <column name="pos_fin" not-null="true">
+                <comment>Posicion final del campo en la traza</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>
